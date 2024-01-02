@@ -1,0 +1,12 @@
+.deps/
+.libs/
+ase.la
+ase.lo
+ase.o
+autom4te.cache/
+config/
+config.log
+config.status
+configure~
+libtool
+Makefile
