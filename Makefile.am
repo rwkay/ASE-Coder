@@ -19,7 +19,7 @@ AM_CPPFLAGS = -I$(top_builddir) -I$(top_srcdir)
 
 ACLOCAL_AMFLAGS = -I m4
 
-MAGICK_CODER_SRCS = mgk.c
+MAGICK_CODER_SRCS = ase.c
 
 # Additional files to distribute
 EXTRA_DIST = LICENSE README.txt
@@ -44,9 +44,9 @@ pkgdir = $(CODER_PATH)
 # pkgdata_DATA = 
 
 # Modules which are to be built
-pkg_LTLIBRARIES   = mgk.la
+pkg_LTLIBRARIES   = ase.la
 
 # MGK module
-mgk_la_SOURCES   = mgk.c
-mgk_la_LDFLAGS   = -no-undefined -module -avoid-version
-mgk_la_LIBADD    = 
+ase_la_SOURCES   = ase.c
+ase_la_LDFLAGS   = -no-undefined -module -avoid-version
+ase_la_LIBADD    = 

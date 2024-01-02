@@ -1,5 +1,5 @@
 /*
-  Copyright 1999-2021 ImageMagick Studio LLC, a non-profit organization
+  Copyright @ 1999 ImageMagick Studio LLC, a non-profit organization
   dedicated to making software imaging solutions freely available.
 
   You may not use this file except in compliance with the License.  You may
@@ -19,9 +19,10 @@
 #define MAGICKCORE_NT_BASE_PRIVATE_H
 
 #include "MagickCore/delegate.h"
-#include "MagickCore/exception.h"
-#include "MagickCore/splay-tree.h"
 #include "filter/delegate-private.h"
+#include "MagickCore/exception.h"
+#include "MagickCore/memory_.h"
+#include "MagickCore/splay-tree.h"
 
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
@@ -67,7 +68,22 @@ struct timezone
 
 #endif
 
+static inline void *NTAcquireQuantumMemory(const size_t count,
+  const size_t quantum)
+{
+  size_t
+    size;
+
+  if (HeapOverflowSanityCheckGetSize(count,quantum,&size) != MagickFalse)
+    {
+      errno=ENOMEM;
+      return(NULL);
+    }
+  return(AcquireMagickMemory(size));
+}
+
 extern MagickPrivate char
+  *NTGetEnvironmentValue(const char *),
   *NTGetLastError(void);
 
 #if !defined(MAGICKCORE_LTDL_DELEGATE)
@@ -84,8 +100,7 @@ extern MagickPrivate DIR
 
 extern MagickPrivate double
   NTElapsedTime(void),
-  NTErf(double),
-  NTUserTime(void);
+  NTErf(double);
 
 extern MagickPrivate int
 #if !defined(__MINGW32__)
@@ -93,14 +108,7 @@ extern MagickPrivate int
 #endif
   NTCloseDirectory(DIR *),
   NTCloseLibrary(void *),
-  NTControlHandler(void),
-  NTExitLibrary(void),
   NTTruncateFile(int,off_t),
-  NTGhostscriptDLL(char *,int),
-  NTGhostscriptFonts(char *,int),
-  NTGhostscriptLoadDLL(void),
-  NTInitializeLibrary(void),
-  NTSetSearchPath(const char *),
   NTUnmapMemory(void *,size_t),
   NTSystemCommand(const char *,char *);
 
@@ -111,10 +119,11 @@ extern MagickPrivate MagickBooleanType
   NTGatherRandomData(const size_t,unsigned char *),
   NTGetExecutionPath(char *,const size_t),
   NTGetModulePath(const char *,char *),
+  NTGhostscriptFonts(char *,int),
   NTReportEvent(const char *,const MagickBooleanType);
 
 extern MagickExport MagickBooleanType
-  NTLongPathsEnabled();
+  NTLongPathsEnabled(void);
 
 extern MagickPrivate struct dirent
   *NTReadDirectory(DIR *);
@@ -126,7 +135,6 @@ extern MagickPrivate unsigned char
 extern MagickPrivate void
   *NTGetLibrarySymbol(void *,const char *),
   NTGhostscriptEXE(char *,int),
-  NTInitializeWinsock(MagickBooleanType),
   *NTMapMemory(char *,size_t,int,int,int,MagickOffsetType),
   *NTOpenLibrary(const char *),
   NTWindowsGenesis(void),

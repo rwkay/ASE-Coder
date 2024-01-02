@@ -152,16 +152,16 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkgdir)"
 LTLIBRARIES = $(pkg_LTLIBRARIES)
-mgk_la_DEPENDENCIES =
-am_mgk_la_OBJECTS = mgk.lo
-mgk_la_OBJECTS = $(am_mgk_la_OBJECTS)
+ase_la_DEPENDENCIES =
+am_ase_la_OBJECTS = ase.lo
+ase_la_OBJECTS = $(am_ase_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-mgk_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+ase_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(mgk_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(ase_la_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -177,7 +177,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/config
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/mgk.Plo
+am__depfiles_remade = ./$(DEPDIR)/ase.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -197,8 +197,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(mgk_la_SOURCES)
-DIST_SOURCES = $(mgk_la_SOURCES)
+SOURCES = $(ase_la_SOURCES)
+DIST_SOURCES = $(ase_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -228,10 +228,10 @@ am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/config/compile \
 	$(top_srcdir)/config/config.h.in \
 	$(top_srcdir)/config/config.sub $(top_srcdir)/config/depcomp \
 	$(top_srcdir)/config/install-sh $(top_srcdir)/config/ltmain.sh \
-	$(top_srcdir)/config/missing ChangeLog config/compile \
-	config/config.guess config/config.sub config/depcomp \
-	config/install-sh config/ltmain.sh config/missing \
-	mkinstalldirs
+	$(top_srcdir)/config/missing ChangeLog README.md \
+	config/compile config/config.guess config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing mkinstalldirs
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -388,7 +388,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_builddir) -I$(top_srcdir)
 ACLOCAL_AMFLAGS = -I m4
-MAGICK_CODER_SRCS = mgk.c
+MAGICK_CODER_SRCS = ase.c
 
 # Additional files to distribute
 EXTRA_DIST = LICENSE README.txt
@@ -414,12 +414,12 @@ pkgdir = $(CODER_PATH)
 # pkgdata_DATA = 
 
 # Modules which are to be built
-pkg_LTLIBRARIES = mgk.la
+pkg_LTLIBRARIES = ase.la
 
 # MGK module
-mgk_la_SOURCES = mgk.c
-mgk_la_LDFLAGS = -no-undefined -module -avoid-version
-mgk_la_LIBADD = 
+ase_la_SOURCES = ase.c
+ase_la_LDFLAGS = -no-undefined -module -avoid-version
+ase_la_LIBADD = 
 all: all-am
 
 .SUFFIXES:
@@ -508,8 +508,8 @@ clean-pkgLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-mgk.la: $(mgk_la_OBJECTS) $(mgk_la_DEPENDENCIES) $(EXTRA_mgk_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(mgk_la_LINK) -rpath $(pkgdir) $(mgk_la_OBJECTS) $(mgk_la_LIBADD) $(LIBS)
+ase.la: $(ase_la_OBJECTS) $(ase_la_DEPENDENCIES) $(EXTRA_ase_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(ase_la_LINK) -rpath $(pkgdir) $(ase_la_OBJECTS) $(ase_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -517,7 +517,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mgk.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ase.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -828,7 +828,7 @@ clean-am: clean-generic clean-libtool clean-pkgLTLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f ./$(DEPDIR)/mgk.Plo
+		-rm -f ./$(DEPDIR)/ase.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -876,7 +876,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f ./$(DEPDIR)/mgk.Plo
+		-rm -f ./$(DEPDIR)/ase.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

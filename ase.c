@@ -1,26 +1,26 @@
 #include "MagickCore/studio.h"
 #include "MagickCore/blob.h"
-#include "MagickCore/blob-private.h"
+#include "filter/blob-private.h"
 #include "MagickCore/cache.h"
-#include "MagickCore/colormap-private.h"
-#include "MagickCore/color-private.h"
+#include "filter/colormap-private.h"
+#include "filter/color-private.h"
 #include "MagickCore/colormap.h"
 #include "MagickCore/colorspace.h"
-#include "MagickCore/colorspace-private.h"
+#include "filter/colorspace-private.h"
 #include "MagickCore/exception.h"
-#include "MagickCore/exception-private.h"
+#include "filter/exception-private.h"
 #include "MagickCore/image.h"
-#include "MagickCore/image-private.h"
+#include "filter/image-private.h"
 #include "MagickCore/list.h"
 #include "MagickCore/log.h"
 #include "MagickCore/magick.h"
 #include "MagickCore/memory_.h"
 #include "MagickCore/monitor.h"
-#include "MagickCore/monitor-private.h"
+#include "filter/monitor-private.h"
 #include "MagickCore/option.h"
 #include "MagickCore/pixel-accessor.h"
 #include "MagickCore/profile.h"
-#include "MagickCore/quantum-private.h"
+#include "filter/quantum-private.h"
 #include "MagickCore/static.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
@@ -231,7 +231,7 @@ static void SetASERect( Image* _image, ASEHeader* _header, uint8_t* _pPixels, in
     p = pP;
     q = GetAuthenticPixels(_image, _xoffs, _yoffs+yy, _width, 1, _exception);
     pixD = GetPixelChannels(_image);
-    printf( "%d :: ", yy);
+     printf( "%d :: ", yy);
 
     if (q != (Quantum*)NULL) {
       for( xx=0; xx<_width; ++xx, p += pixS, q += pixD) {
@@ -240,9 +240,9 @@ static void SetASERect( Image* _image, ASEHeader* _header, uint8_t* _pPixels, in
         //case 8:
           {
             uint8_t b = *p;
-            //printf( "%02x ", b);
             //Quantum pix = ScaleCharToQuantum( b );
             ssize_t index = ConstrainColormapIndex( _image, b, _exception );
+            printf( "(%f,%f,%f,%f) ", _image->colormap[index].red, _image->colormap[index].green, _image->colormap[index].blue, _image->colormap[index].alpha );
             SetPixelViaPixelInfo( _image, &_image->colormap[index], q );
           } // end block 
           //break;
@@ -252,7 +252,7 @@ static void SetASERect( Image* _image, ASEHeader* _header, uint8_t* _pPixels, in
     } // end if
 
     SyncAuthenticPixels(_image, _exception );
-    //printf( "\n");
+    printf( "\n");
   } // end for
 
 } // end SetASERect

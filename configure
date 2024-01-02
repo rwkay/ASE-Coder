@@ -626,7 +626,7 @@ PACKAGE_STRING='MagickCoderKit 1.0.3-1'
 PACKAGE_BUGREPORT='https://github.com/ImageMagick/ImageMagick/issues'
 PACKAGE_URL='https://imagemagick.org'
 
-ac_unique_file="mgk.c"
+ac_unique_file="ase.c"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stddef.h>
